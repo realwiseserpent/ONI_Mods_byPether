@@ -36,9 +36,9 @@ namespace RoomsExpanded
         };
 
         public static RoomConstraints.Constraint COOKING_STATION = new RoomConstraints.Constraint(
-                                                                    bc => bc.HasTag(RoomConstraintTags.KitchenBuildingTag), 
-                                                                    null, 
-                                                                    name: STRINGS.ROOMS.CRITERIA.COOKING.NAME, 
+                                                                    bc => bc.HasTag(RoomConstraintTags.KitchenBuildingTag),
+                                                                    null,
+                                                                    name: STRINGS.ROOMS.CRITERIA.COOKING.NAME,
                                                                     description: STRINGS.ROOMS.CRITERIA.COOKING.DESCRIPTION);
 
         public static RoomConstraints.Constraint FRIDGE = new RoomConstraints.Constraint(
@@ -48,7 +48,7 @@ namespace RoomsExpanded
                                                                 description: STRINGS.ROOMS.CRITERIA.FRIDGE.DESCRIPTION);
 
         public static RoomConstraints.Constraint BATHROOM = new RoomConstraints.Constraint(
-                                                                bc => bc.HasTag(RoomConstraintTags.BathroomTag) 
+                                                                bc => bc.HasTag(RoomConstraintTags.BathroomTag)
                                                                     && !bc.HasTag(RoomConstraints.ConstraintTags.FlushToiletType),
                                                                 null,
                                                                 name: STRINGS.ROOMS.CRITERIA.SHOWER.NAME,
@@ -102,7 +102,7 @@ namespace RoomsExpanded
                                                             description: STRINGS.ROOMS.CRITERIA.RADIATIONSOURCE.DESCRIPTION);
 
         public static RoomConstraints.Constraint RUNNING_WHEEL = new RoomConstraints.Constraint(
-                                                            bc => bc.HasTag(RoomConstraintTags.RunningWheelGeneratorTag), 
+                                                            bc => bc.HasTag(RoomConstraintTags.RunningWheelGeneratorTag),
                                                             null,
                                                             name: STRINGS.ROOMS.CRITERIA.MANUALGENERATOR.NAME,
                                                             description: STRINGS.ROOMS.CRITERIA.MANUALGENERATOR.DESCRIPTION,
@@ -265,8 +265,8 @@ namespace RoomsExpanded
 
                                                                     int count = 0;
 
-                                                                    for(int x = room.cavity.minX; x <= room.cavity.maxX; x++)
-                                                                        for(int y = room.cavity.minY; y <= room.cavity.maxY; y++)
+                                                                    for (int x = room.cavity.minX; x <= room.cavity.maxX; x++)
+                                                                        for (int y = room.cavity.minY; y <= room.cavity.maxY; y++)
                                                                         {
                                                                             int cell = Grid.XYToCell(x, y);
                                                                             int above = Grid.CellAbove(cell);
@@ -280,10 +280,55 @@ namespace RoomsExpanded
                                                                 description: STRINGS.ROOMS.CRITERIA.TRANSPARENT_CEILING.NAME);
 
         public static RoomConstraints.Constraint DECOR_OR_WATER_FORT = new RoomConstraints.Constraint(
-                                                                bc => bc.HasTag(RoomConstraints.ConstraintTags.Decoration) || bc.HasTag(UnderwaterCritterCondoConfig.ID), 
+                                                                bc => bc.HasTag(RoomConstraints.ConstraintTags.Decoration) || bc.HasTag(UnderwaterCritterCondoConfig.ID),
                                                                 null,
                                                                 name: STRINGS.ROOMS.CRITERIA.DECOR_OR_WATER_FORT.NAME,
                                                                 description: STRINGS.ROOMS.CRITERIA.DECOR_OR_WATER_FORT.DESCRIPTION);
+
+
+        public static RoomConstraints.Constraint At_LEAST_TWO_FACTORY = new RoomConstraints.Constraint(
+                                                                bc => bc.HasTag(RoomConstraintTags.FactoryBuildingTag),
+                                                                room =>
+                                                                {
+                                                                    int count = 0;
+                                                                    if (room != null)
+                                                                        foreach (KPrefabID building in room.buildings)
+                                                                            if (building != null && building.HasTag(RoomConstraintTags.FactoryBuildingTag))
+                                                                                count++;
+
+                                                                    return count >= 2;
+                                                                },
+                                                                name: "At_LEAST_TWO_FACTORY",
+                                                                description: "At_LEAST_TWO_FACTORY DESCRIPTION");
+
+        public static RoomConstraints.Constraint At_LEAST_TWO_CHEMICAL = new RoomConstraints.Constraint(
+                                                            bc => bc.HasTag(RoomConstraintTags.ChemicalBuildingTag),
+                                                            room =>
+                                                            {
+                                                                int count = 0;
+                                                                if (room != null)
+                                                                    foreach (KPrefabID building in room.buildings)
+                                                                        if (building != null && building.HasTag(RoomConstraintTags.ChemicalBuildingTag))
+                                                                            count++;
+
+                                                                return count >= 2;
+                                                            },
+                                                            name: "At_LEAST_TWO_CHEMICAL",
+                                                            description: "At_LEAST_TWO_CHEMICAL DESCRIPTION");
+
+        public static RoomConstraints.Constraint NO_GENERATORS = new RoomConstraints.Constraint(
+                                                                null,
+                                                                room =>
+                                                                {
+                                                                    foreach (KPrefabID building in room.buildings)
+                                                                        if (building.HasTag(RoomConstraintTags.GeneratorBuildingTag))
+                                                                            return false;
+
+                                                                    return true;
+                                                                },
+                                                                name: "NO_GENERATORS",
+                                                                description: "NO_GENERATORS DESCRIPTION");
+
 
         private static bool IsDecorativePlant(KPrefabID plant)
         {

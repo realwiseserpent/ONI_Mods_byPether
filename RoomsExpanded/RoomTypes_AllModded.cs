@@ -179,6 +179,28 @@ namespace RoomsExpanded
             return prv_Industrial;
         }
 
+
+        private static RoomType prv_ProductionShop = null;
+        public static RoomType ProductionShop
+        {
+            get
+            {
+                if (prv_ProductionShop == null)
+                    prv_ProductionShop = new RoomTypeProductionShopData().GetRoomType();
+                return prv_ProductionShop;
+            }
+        }
+        private static RoomType prv_RefinaryShop = null;
+        public static RoomType RefinaryShop
+        {
+            get
+            {
+                if (prv_RefinaryShop == null)
+                    prv_RefinaryShop = new RoomTypeRefinaryShopData().GetRoomType();
+                return prv_RefinaryShop;
+            }
+        }
+
         public static bool IsInTheRoom(KMonoBehaviour item, string roomId)
         {
             CavityInfo info = Game.Instance.roomProber.GetCavityForCell(Grid.PosToCell(item));

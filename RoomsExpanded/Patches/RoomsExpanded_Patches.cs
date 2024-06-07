@@ -82,6 +82,8 @@ namespace RoomsExpanded
                 RoomsExpanded_Patches_MuseumSpace.AddRoom(ref __instance);
                 RoomsExpanded_Patches_MuseumHistory.AddRoom(ref __instance);
                 RoomsExpanded_Patches_MissionControl.AddRoom(ref __instance);
+                RoomsExpanded_Patches_ProductionShop.AddRoom(ref __instance);
+                RoomsExpanded_Patches_RefinaryShop.AddRoom(ref __instance);
                 //RoomsExpanded_Patches_PrivateRoom.AddRoom(ref __instance);
 
                 // Temporary "Room Size" mod functionality restored for DLC
@@ -146,7 +148,25 @@ namespace RoomsExpanded
             }
         }
 
+        [HarmonyPatch(typeof(Db))]
+        [HarmonyPatch("Initialize")]
+        public static class asdasd
+        {
+            public static void Prefix()
+            {
+                RoomConstraints.ConstraintTags.AllTags.Add(RoomConstraintTags.KitchenBuildingTag);
+                CodexEntryGenerator.RoomConstrainTagIcons.Add(RoomConstraintTags.KitchenBuildingTag,"watercooler");
 
+                RoomConstraints.ConstraintTags.AllTags.Add(RoomConstraintTags.GeneratorBuildingTag);
+                CodexEntryGenerator.RoomConstrainTagIcons.Add(RoomConstraintTags.GeneratorBuildingTag, "watercooler");
+
+                RoomConstraints.ConstraintTags.AllTags.Add(RoomConstraintTags.FactoryBuildingTag);
+                CodexEntryGenerator.RoomConstrainTagIcons.Add(RoomConstraintTags.FactoryBuildingTag, "watercooler");
+
+                RoomConstraints.ConstraintTags.AllTags.Add(RoomConstraintTags.ChemicalBuildingTag);
+                CodexEntryGenerator.RoomConstrainTagIcons.Add(RoomConstraintTags.ChemicalBuildingTag, "watercooler");
+            }
+        }
 
         [HarmonyPatch(typeof(OverlayModes.Rooms))]
         [HarmonyPatch("GetCustomLegendData")]
@@ -224,6 +244,11 @@ namespace RoomsExpanded
                 //    namedLookup.Add(RoomTypePrivateRoomData.RoomId, Settings.Instance.PrivateBedroom.RoomColor);
                 if (!namedLookup.ContainsKey(RoomTypeMissionControlRoomData.RoomId))
                     namedLookup.Add(RoomTypeMissionControlRoomData.RoomId, Settings.Instance.MissionControl.RoomColor);
+
+                if (!namedLookup.ContainsKey(RoomTypeProductionShopData.RoomId))
+                    namedLookup.Add(RoomTypeProductionShopData.RoomId, Settings.Instance.ProductionShop.RoomColor);
+                if (!namedLookup.ContainsKey(RoomTypeRefinaryShopData.RoomId))
+                    namedLookup.Add(RoomTypeRefinaryShopData.RoomId, Settings.Instance.RefinaryShop.RoomColor);
 
                 //LogColors(namedLookup);
             }

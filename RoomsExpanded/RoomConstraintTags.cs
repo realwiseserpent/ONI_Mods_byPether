@@ -19,6 +19,9 @@ namespace RoomsExpanded
         public static Tag SpaceBuildingTag = nameof(SpaceBuildingTag).ToString().ToTag();
         public static Tag FossilBuilding = nameof(FossilBuilding).ToString().ToTag();
         public static Tag CarouselCentrifuge = nameof(CarouselCentrifuge).ToString().ToTag();
+        public static Tag GeneratorBuildingTag = nameof(GeneratorBuildingTag).ToString().ToTag();
+        public static Tag ChemicalBuildingTag = nameof(ChemicalBuildingTag).ToString().ToTag();
+        public static Tag FactoryBuildingTag = nameof(FactoryBuildingTag).ToString().ToTag();
 
         public static RoomConstraints.Constraint GetMaxSizeConstraint(int maxSize)
         {

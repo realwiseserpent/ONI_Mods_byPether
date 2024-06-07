@@ -107,6 +107,8 @@ namespace RoomsExpanded
             HospitalUpdate = new PlainRoomSettings(true, 96, ColorPalette.RoomHospital);
             NurseryGenetic = new RoomSettings(true, 96, ColorPalette.RoomAgricultural, 0.2f);
             MissionControl = new PlainRoomSettings(true, 96, ColorPalette.RoomScience);
+            ProductionShop = new RoomSettings(true, 96, ColorPalette.RoomIndustrial, 0.3f);
+            RefinaryShop = new RoomSettings(true, 96, ColorPalette.RoomIndustrial, 0.3f);
 
             ResizeMinRoomSize12 = 12;
             ResizeMinRoomSize24 = 24;
@@ -184,6 +186,16 @@ namespace RoomsExpanded
         //[JsonProperty]
         //[Option("History Museum", category: "New Room - History Museum")]
         public RoomSettings MuseumHistory { get; set; }
+
+
+        [JsonProperty]
+        [Option("ProductionShop", category: "New Room - ProductionShop")]
+        public RoomSettings ProductionShop { get; set; }
+
+
+        [JsonProperty]
+        [Option("RefinaryShop", category: "New Room - RefinaryShop")]
+        public RoomSettings RefinaryShop { get; set; }
 
         [JsonProperty]
         [Limit(1, 12)]
