@@ -10,30 +10,32 @@ namespace RoomsExpanded
     [Serializable]
     [RestartRequired]
     [ConfigFileAttribute("RoomsExpanded.Settings.json", true)]
-    public class Settings :IOptions
+    public class Settings : IOptions
     {
         [Serializable]
-        public class RoomSettings
+        public class RoomSettings : PlainRoomSettings
         {
-            [JsonProperty]
-            [Option("IncludeRoom", "Do you want to play with this room?")]
-            public bool IncludeRoom { get; set; }
+            //[JsonProperty]
+            ////[Option("IncludeRoom", "Do you want to play with this room?")]
+            //[Option("STRINGS.MOD_UI.MODSETTINGS.INCLUDEROOM.TITLE", "STRINGS.MOD_UI.MODSETTINGS.INCLUDEROOM.TOOLTIP")]
+            //public bool IncludeRoom { get; set; }
 
-            [JsonProperty]
-            [Limit(12, 256)]
-            [Option("MaxSize", "How big this room can be?")]
-            public int MaxSize { get; set; }
-            
+            //[JsonProperty]
+            //[Limit(12, 256)]
+            //[Option("MaxSize", "How big this room can be?")]
+            //public int MaxSize { get; set; }
+
             [JsonProperty]
             [Limit(0.0, 1.0)]
-            [Option("Bonus", "How big bonus the room should provide?")]
+            //[Option("Bonus", "How big bonus the room should provide?")]
+            [Option("STRINGS.MOD_UI.MODSETTINGS.ROOMSETTINGS.BONUS.TITLE", "STRINGS.MOD_UI.MODSETTINGS.ROOMSETTINGS.BONUS.TOOLTIP")]
             public float Bonus { get; set; }
 
-            [JsonProperty]
-            [Option("RoomColor", "What color do you want to see in the Room Overlay?")]
-            public Color32 RoomColor { get; set; }
+            //[JsonProperty]
+            //[Option("RoomColor", "What color do you want to see in the Room Overlay?")]
+            //public Color32 RoomColor { get; set; }
 
-            public RoomSettings(bool include, int max, Color32 color, float bonus)
+            public RoomSettings(bool include, int max, Color32 color, float bonus) 
             {
                 IncludeRoom = include;
                 MaxSize = max;
@@ -46,16 +48,19 @@ namespace RoomsExpanded
         public class PlainRoomSettings
         {
             [JsonProperty]
-            [Option("IncludeRoom", "Do you want to play with this room?")]
+            //[Option("IncludeRoom", "Do you want to play with this room?")]
+            [Option("STRINGS.MOD_UI.MODSETTINGS.ROOMSETTINGS.INCLUDEROOM.TITLE", "STRINGS.MOD_UI.MODSETTINGS.ROOMSETTINGS.INCLUDEROOM.TOOLTIP")]
             public bool IncludeRoom { get; set; }
 
             [JsonProperty]
             [Limit(12, 256)]
-            [Option("MaxSize", "How big this room can be?")]
+            //[Option("MaxSize", "How big this room can be?")]
+            [Option("STRINGS.MOD_UI.MODSETTINGS.ROOMSETTINGS.MAXSIZE.TITLE", "STRINGS.MOD_UI.MODSETTINGS.ROOMSETTINGS.MAXSIZE.TOOLTIP")]
             public int MaxSize { get; set; }
 
             [JsonProperty]
-            [Option("RoomColor", "What color do you want to see in the Room Overlay?")]
+            //[Option("RoomColor", "What color do you want to see in the Room Overlay?")]
+            [Option("STRINGS.MOD_UI.MODSETTINGS.ROOMSETTINGS.ROOMCOLOR.TITLE", "STRINGS.MOD_UI.MODSETTINGS.ROOMSETTINGS.ROOMCOLOR.TOOLTIP")]
             public Color32 RoomColor { get; set; }
 
             public PlainRoomSettings(bool include, int max, Color32 color)
@@ -64,12 +69,15 @@ namespace RoomsExpanded
                 MaxSize = max;
                 RoomColor = color;
             }
+
+            public PlainRoomSettings()
+            { }
         }
-            
+
         private static Settings _instance = null;
         public static Settings Instance
         {
-            get 
+            get
             {
                 if (_instance == null)
                     _instance = JsonSerializer<Settings>.Deserialize();
@@ -78,7 +86,7 @@ namespace RoomsExpanded
                     _instance = new Settings();
                     JsonSerializer<Settings>.Serialize(_instance);
                 }
-                return _instance; 
+                return _instance;
             }
         }
 
@@ -89,7 +97,7 @@ namespace RoomsExpanded
 
         public Settings()
         {
-            HideLegendEffect = true; 
+            HideLegendEffect = true;
             EnforcedLanguage = "";
 
             Kitchenette = new RoomSettings(true, 64, ColorPalette.RoomFood, 0.1f);
@@ -105,7 +113,7 @@ namespace RoomsExpanded
             MuseumSpace = new RoomSettings(true, 120, ColorPalette.RoomRecreation, 0.3f);
             MuseumHistory = new RoomSettings(true, 96, ColorPalette.RoomRecreation, 0.3f);
             HospitalUpdate = new PlainRoomSettings(true, 96, ColorPalette.RoomHospital);
-            NurseryGenetic = new RoomSettings(true, 96, ColorPalette.RoomAgricultural, 0.2f);
+            NurseryGenetic = new RoomSettings(DlcManager.IsExpansion1Active(), 96, ColorPalette.RoomAgricultural, 0.2f);
             MissionControl = new PlainRoomSettings(true, 96, ColorPalette.RoomScience);
 
             ResizeMinRoomSize12 = 12;
@@ -126,63 +134,63 @@ namespace RoomsExpanded
         public string EnforcedLanguage { get; set; }
 
         [JsonProperty]
-        [Option("Kitchenette", category: "New Room - Kitchenette")]
+        [Option("Kitchenette", category: "STRINGS.MOD_UI.MODSETTINGS.ROOMCATEGORIES.KITCHENETTE")]
         public RoomSettings Kitchenette { get; set; }
 
         [JsonProperty]
-        [Option("Bathroom", category: "New Room - Shower Room")]
+        [Option("Bathroom", category: "STRINGS.MOD_UI.MODSETTINGS.ROOMCATEGORIES.SHOWERROOM")]
         public RoomSettings Bathroom { get; set; }
 
         [JsonProperty]
-        [Option("Industrial", category: "New Room - Industrial Room")]
+        [Option("Industrial", category: "STRINGS.MOD_UI.MODSETTINGS.ROOMCATEGORIES.INDUSTRIAL")]
         public PlainRoomSettings Industrial { get; set; }
 
         [JsonProperty]
-        [Option("Graveyard", category: "New Room - Graveyard")]
+        [Option("Graveyard", category: "STRINGS.MOD_UI.MODSETTINGS.ROOMCATEGORIES.GRAVEYARD")]
         public RoomSettings Graveyard { get; set; }
 
         [JsonProperty]
-        [Option("Agricultural", category: "New Room - Agricultural")]
+        [Option("Agricultural", category: "STRINGS.MOD_UI.MODSETTINGS.ROOMCATEGORIES.AGRICULTURAL")]
         public PlainRoomSettings Agricultural { get; set; }
 
         [JsonProperty]
-        [Option("Gym", category: "New Room - Gym")]
+        [Option("Gym", category: "STRINGS.MOD_UI.MODSETTINGS.ROOMCATEGORIES.GYMROOM")]
         public RoomSettings Gym { get; set; }
 
         [JsonProperty]
-        [Option("Nursery", category: "New Room - Plant Nursery")]
+        [Option("Nursery", category: "STRINGS.MOD_UI.MODSETTINGS.ROOMCATEGORIES.NURSERY")]
         public RoomSettings Nursery { get; set; }
 
         [JsonProperty]
-        [Option("Aquarium", category: "New Room - Aquarium")]
+        [Option("Aquarium", category: "STRINGS.MOD_UI.MODSETTINGS.ROOMCATEGORIES.AQUARIUM")]
         public RoomSettings Aquarium { get; set; }
 
         [JsonProperty]
-        [Option("Botanical Garden", category: "New Room - Botanical Garden")]
+        [Option("Botanical Garden", category: "STRINGS.MOD_UI.MODSETTINGS.ROOMCATEGORIES.BOTANICAL")]
         public PlainRoomSettings Botanical { get; set; }
 
         [JsonProperty]
-        [Option("Museum", category: "New Room - Museum")]
+        [Option("Museum", category: "STRINGS.MOD_UI.MODSETTINGS.ROOMCATEGORIES.MUSEUM")]
         public RoomSettings Museum { get; set; }
 
         [JsonProperty]
-        [Option("Hospital Update", category: "Room Modification - Hospital")]
+        [Option("Hospital Update", category: "STRINGS.MOD_UI.MODSETTINGS.ROOMCATEGORIES.HOSPITALUPDATE")]
         public PlainRoomSettings HospitalUpdate { get; set; }
 
         [JsonProperty]
-        [Option("Genetic Nursery", category: "New Room - Genetic Nursery")]
+        [Option("Genetic Nursery", category: "STRINGS.MOD_UI.MODSETTINGS.ROOMCATEGORIES.NURSERYGENETIC")]
         public RoomSettings NurseryGenetic { get; set; }
 
         [JsonProperty]
-        [Option("Space Museum", category: "New Room - Space Museum")]
+        [Option("Space Museum", category: "STRINGS.MOD_UI.MODSETTINGS.ROOMCATEGORIES.MUSEUMSPACE")]
         public RoomSettings MuseumSpace { get; set; }
 
         [JsonProperty]
-        [Option("Mission Control", category: "New Room - Mission Control")]
+        [Option("Mission Control", category: "STRINGS.MOD_UI.MODSETTINGS.ROOMCATEGORIES.MISSIONCONTROL")]
         public PlainRoomSettings MissionControl { get; set; }
 
         //[JsonProperty]
-        //[Option("History Museum", category: "New Room - History Museum")]
+        //[Option("History Museum", category: "STRINGS.MOD_UI.MODSETTINGS.ROOMCATEGORIES.MUSEUMHISTORY")]
         public RoomSettings MuseumHistory { get; set; }
 
         [JsonProperty]

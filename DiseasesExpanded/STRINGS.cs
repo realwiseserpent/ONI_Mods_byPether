@@ -166,61 +166,61 @@ namespace DiseasesExpanded
             public class BOGRECOVERY
             {
                 public static LocString NAME = (LocString)"Bog Bugs Infestation Recovery";
-                public static LocString DESC = (LocString)"This duplicant just recovered from Bog Bugs Infestation.";
+                public static LocString DESC = (LocString)string.Concat("This duplicant just recovered from ", DISEASES.BOGSICKNESS.NAME, " and is temporarily immune to the ", UI.PRE_KEYWORD, "Disease", UI.PST_KEYWORD);
             }
 
             public class FROSTRECOVERY
             {
-                public static LocString NAME = (LocString)"Frost Pox Recovery";
-                public static LocString DESC = (LocString)"This duplicant just recovered from Frost Pox.";
+                public static LocString NAME = (LocString)"Frost Pox Antibodies";
+                public static LocString DESC = (LocString)string.Concat("This duplicant just recovered from ", DISEASES.FROSTSICKNESS.NAME, " and is temporarily immune to the ", UI.PRE_KEYWORD, "Disease", UI.PST_KEYWORD);
             }
 
             public class GASRECOVERY
             {
-                public static LocString NAME = (LocString)"Moo Flu Recovery";
-                public static LocString DESC = (LocString)"This duplicant just recovered from Moo Flu.";
+                public static LocString NAME = (LocString)"Moo Flu Antibodies";
+                public static LocString DESC = (LocString)string.Concat("This duplicant just recovered from ", DISEASES.GASSICKNESS.NAME, " and is temporarily immune to the ", UI.PRE_KEYWORD, "Disease", UI.PST_KEYWORD);
             }
 
             public class HUNGERRECOVERY
             {
-                public static LocString NAME = (LocString)"Everlasting Hunger Recovery";
-                public static LocString DESC = (LocString)"This duplicant just recovered from Everlasting Hunger.";
+                public static LocString NAME = (LocString)"Everlasting Hunger Antibodies";
+                public static LocString DESC = (LocString)string.Concat("This duplicant just recovered from ", DISEASES.HUNGERSICKNESS.NAME, " and is temporarily immune to the ", UI.PRE_KEYWORD, "Disease", UI.PST_KEYWORD);
             }
 
             public class SPINDLYRECOVERY
             {
-                public static LocString NAME = (LocString)"Sleeping Curse Recovery";
-                public static LocString DESC = (LocString)"This duplicant just recovered from Sleeping Curse.";
+                public static LocString NAME = (LocString)"Sleeping Curse Antibodies";
+                public static LocString DESC = (LocString)string.Concat("This duplicant just recovered from ", DISEASES.SPINDLYCURSE.NAME, " and is temporarily immune to the ", UI.PRE_KEYWORD, "Disease", UI.PST_KEYWORD);
             }
 
             public class ALIENRECOVERY
             {
-                public static LocString NAME = (LocString)"Alien Symbiot Recovery";
-                public static LocString DESC = (LocString)"This duplicant was cured from Alien Symbiot.";
+                public static LocString NAME = (LocString)"Alien Symbiot Antibodies";
+                public static LocString DESC = (LocString)string.Concat("This duplicant just recovered from ", DISEASES.ALIENSICKNESS.NAME, " and is temporarily immune to the ", UI.PRE_KEYWORD, "Disease", UI.PST_KEYWORD);
             }
 
             public class ALIENASSIMILATION
             {
                 public static LocString NAME = (LocString)"Assimilation Successful";
-                public static LocString DESC = (LocString)"Alien Symbiot completed assimilation and no longer provides benefits to the host.";
+                public static LocString DESC = (LocString)"Alien Symbiot completed assimilation and no longer provides benefits to the host";
             }
 
             public class MUTATEDSYMPTOMS
             {
                 public static LocString NAME = (LocString)"Mutating Disease Symptoms";
-                public static LocString DESC = (LocString)"This duplicant is suffering from various symptoms of mutating disease.";
+                public static LocString DESC = (LocString)"This duplicant is suffering from various symptoms of mutating disease";
             }
 
             public class MUTATEDRECOVERY
             {
-                public static LocString NAME = (LocString)"Mutating Disease Recovery";
-                public static LocString DESC = (LocString)"This duplicant just recovered from Mutating Disease.";
+                public static LocString NAME = (LocString)"Mutating Disease Antibodies";
+                public static LocString DESC = (LocString)string.Concat("This duplicant just recovered from ", DISEASES.MUTATINGSICKNESS.NAME, " and is temporarily immune to the ", UI.PRE_KEYWORD, "Disease", UI.PST_KEYWORD);
             }
 
             public class JUSTGOTTESTED
             {
                 public static LocString NAME = (LocString)"Just Got Tested";
-                public static LocString DESC = (LocString)"This Duplicant just delivered germ sample for futher testing.";
+                public static LocString DESC = (LocString)"This Duplicant just delivered germ sample for futher testing";
             }
 
             public class SPINDLYTHORNS
@@ -232,7 +232,7 @@ namespace DiseasesExpanded
             public class NANOBOTENHANCEMENT
             {
                 public static LocString NAME = (LocString)"Nanobot Enhancement";
-                public static LocString DESC = (LocString)"This Duplicant is getting health boost from friendly Nanobot enhancement.";
+                public static LocString DESC = (LocString)"This Duplicant is getting health boost from friendly Nanobot enhancement";
             }
         }
 
@@ -471,20 +471,20 @@ namespace DiseasesExpanded
         {
             public class GERMCATCHER
             {
-                public static LocString NAME = (LocString)"Germcatcher";
+                public static LocString NAME = (LocString)UI.FormatAsLink("Germcatcher", GermcatcherConfig.ID);
                 public static LocString DESC = (LocString)"Germcatchers collect germ samples for medical study and vaccine production.";
                 public static LocString EFFECT = (LocString)$"Gathers ambient {UI.FormatAsLink("germs", "DISEASE")} and stores them in the {UI.FormatAsLink("flasks", TestSampleConfig.ID)} for future research at an {UI.FormatAsLink("Apothecary", "APOTHECARY")} and vaccine production.";
             }
 
             public class VACCINEAPOTHECARY
             {
-                public static LocString NAME = (LocString)"Vaccine Apothecary";
+                public static LocString NAME = (LocString)UI.FormatAsLink("Vaccine Apothecary", VaccineApothecaryConfig.ID);
                 public static LocString DESC = (LocString)"Vaccines produced here can grant your duplicants immunity for various diseases.";
                 public static LocString EFFECT = (LocString)$"Vaccine Apothecary uses {UI.FormatAsLink("Radiation", "RADIATION")} to weaken {UI.FormatAsLink("germs", "DISEASE")} stored in a {UI.FormatAsLink("flasks", TestSampleConfig.ID)} to produce life-saving vaccines.\n\nIt must be operated by highly-trained {UI.FormatAsLink("medical", "ROLES")} personel and it is suggested to use radiation protection for the time of vaccine preparation.";
             }
             public class SHIELDGENERATOR
             {
-                public static LocString NAME = (LocString)"Shield Generator";
+                public static LocString NAME = (LocString)UI.FormatAsLink("Shield Generator", ShieldGeneratorConfig.ID);
                 public static LocString DESC = (LocString)"Shields the asteroid from cosmic radiation.";
                 public static LocString EFFECT = (LocString)$"When powered, generates shield around the asteroid to protect the surface from cosmic {UI.FormatAsLink("Radiation", "RADIATION")}. \n\nRequires line of sight to space.";
             }

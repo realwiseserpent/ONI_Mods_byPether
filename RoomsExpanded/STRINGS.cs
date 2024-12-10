@@ -143,7 +143,7 @@ namespace RoomsExpanded
 
                 public class COOKING
                 {
-                    public static LocString NAME = (LocString)"Cooking Station";
+                    public static LocString NAME = (LocString)$"{UI.FormatAsLink("Microbe Mushers", "MICROBEMUSHER")} or {UI.FormatAsLink("Cooking Station", "BUILDCATEGORYREQUIREMENTCLASSCOOKTOP")}";
                     public static LocString DESCRIPTION = (LocString)"At least one Microbe Musher, Electric Grill or Gas Range.";
                 }
 
@@ -329,8 +329,8 @@ namespace RoomsExpanded
 
                 public class DECOR_OR_WATER_FORT
                 {
-                    public static LocString NAME = (LocString)"Aquarium Decoration";
-                    public static LocString DESCRIPTION = (LocString)"Water Fort or a Decor item.";
+                    public static LocString NAME = (LocString)$"{UI.FormatAsLink("Water Fort", "UNDERWATERCRITTERCONDO")} or {UI.FormatAsLink("Decor item", "BUILDCATEGORYREQUIREMENTCLASSDECORATION")}";
+                    public static LocString DESCRIPTION = (LocString)"At least one Water Fort or a Decor item.";
                 }
             }
 
@@ -383,6 +383,64 @@ namespace RoomsExpanded
                     public static LocString NAME = (LocString)"Private Bathroom";
                     public static LocString DESCRIPTION = (LocString)"This Duplicant visited their Private Bathroom.";
                 }
+            }
+        }
+
+        public class MOD_UI
+        {
+            public class MODSETTINGS
+            {
+                public static string NEW_ROOM_CATEGORY_TEMPLATE = "New Room - {0}";
+                public static string ROOM_MODIFICATION_CATEGORY_TEMPLATE = "Room Modification - {0}";
+
+                public class ROOMSETTINGS
+                {
+                    public class INCLUDEROOM
+                    {
+                        public static LocString TITLE = "IncludeRoom";
+                        public static LocString TOOLTIP = "Do you want to play with this room?";
+                    }
+
+                    public class MAXSIZE
+                    {
+                        public static LocString TITLE = "MaxSize";
+                        public static LocString TOOLTIP = "How big this room can be?";
+                    }
+
+                    public class ROOMCOLOR
+                    {
+                        public static LocString TITLE = "RoomColor";
+                        public static LocString TOOLTIP = "What color do you want to see in the Room Overlay?";
+                    }
+                    public class BONUS
+                    {
+                        public static LocString TITLE = "Bonus";
+                        public static LocString TOOLTIP = "How big bonus the room should provide?";
+                    }
+                }
+
+                public class ROOMCATEGORIES
+                {
+                    public static LocString LABORATORY = string.Format(NEW_ROOM_CATEGORY_TEMPLATE, ROOMS.TYPES.LABORATORY.NAME);
+                    public static LocString AGRICULTURAL = string.Format(NEW_ROOM_CATEGORY_TEMPLATE, ROOMS.TYPES.AGRICULTURAL.NAME);
+                    public static LocString KITCHENETTE = string.Format(NEW_ROOM_CATEGORY_TEMPLATE, ROOMS.TYPES.KITCHENETTE.NAME);
+                    public static LocString SHOWERROOM = string.Format(NEW_ROOM_CATEGORY_TEMPLATE, ROOMS.TYPES.SHOWERROOM.NAME);
+                    public static LocString GRAVEYARD = string.Format(NEW_ROOM_CATEGORY_TEMPLATE, ROOMS.TYPES.GRAVEYARD.NAME);
+                    public static LocString GYMROOM = string.Format(NEW_ROOM_CATEGORY_TEMPLATE, ROOMS.TYPES.GYMROOM.NAME);
+                    public static LocString INDUSTRIAL = string.Format(NEW_ROOM_CATEGORY_TEMPLATE, ROOMS.TYPES.INDUSTRIAL.NAME);
+                    public static LocString NURSERY = string.Format(NEW_ROOM_CATEGORY_TEMPLATE, ROOMS.TYPES.NURSERY.NAME);
+                    public static LocString AQUARIUM = string.Format(NEW_ROOM_CATEGORY_TEMPLATE, ROOMS.TYPES.AQUARIUM.NAME);
+                    public static LocString BOTANICAL = string.Format(NEW_ROOM_CATEGORY_TEMPLATE, ROOMS.TYPES.BOTANICAL.NAME);
+                    public static LocString MUSEUM = string.Format(NEW_ROOM_CATEGORY_TEMPLATE, ROOMS.TYPES.MUSEUM.NAME);
+                    public static LocString PRIVATEROOM = string.Format(NEW_ROOM_CATEGORY_TEMPLATE, ROOMS.TYPES.PRIVATEROOM.NAME);
+                    public static LocString NURSERYGENETIC = string.Format(NEW_ROOM_CATEGORY_TEMPLATE, ROOMS.TYPES.NURSERYGENETIC.NAME);
+                    public static LocString MUSEUMSPACE = string.Format(NEW_ROOM_CATEGORY_TEMPLATE, ROOMS.TYPES.MUSEUMSPACE.NAME);
+                    public static LocString MUSEUMHISTORY = string.Format(NEW_ROOM_CATEGORY_TEMPLATE, ROOMS.TYPES.MUSEUMHISTORY.NAME);
+                    public static LocString MISSIONCONTROL = string.Format(NEW_ROOM_CATEGORY_TEMPLATE, ROOMS.TYPES.MISSIONCONTROL.NAME);
+                    public static LocString HOSPITALUPDATE = string.Format(ROOM_MODIFICATION_CATEGORY_TEMPLATE, "Hospital");
+                }
+
+
             }
         }
     }
