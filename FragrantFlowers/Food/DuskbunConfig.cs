@@ -8,7 +8,7 @@ namespace FragrantFlowers
         public const string ID = "Duskbun";
         public static ComplexRecipe recipe;
 
-        public string[] GetDlcIds() => DlcManager.AVAILABLE_EXPANSION1_ONLY;
+        public string[] GetDlcIds() => DlcManager.EXPANSION1;
 
         public void OnPrefabInit(GameObject inst)
         {
@@ -20,11 +20,13 @@ namespace FragrantFlowers
 
         public GameObject CreatePrefab()
         {
-
             ComplexRecipe.RecipeElement[] ingredients = new ComplexRecipe.RecipeElement[2]
             {
                 new ComplexRecipe.RecipeElement(ColdWheatBreadConfig.ID, 1f),
-                new ComplexRecipe.RecipeElement(DuskjamConfig.ID, 1f)
+                new ComplexRecipe.RecipeElement(new Tag[]{
+                    DuskjamConfig.ID,
+                    WormSuperFoodConfig.ID,
+                }, 1f)
             };
             ComplexRecipe.RecipeElement[] results = new ComplexRecipe.RecipeElement[1]
             {
@@ -39,7 +41,7 @@ namespace FragrantFlowers
                 sortOrder = 1
             };
 
-            EdiblesManager.FoodInfo info = new EdiblesManager.FoodInfo(ID, "EXPANSION1_ID", 4000000f, 5, 255.15f, 277.15f, 4800f, true); // see TUNING.FOOD.FOOD_TYPES.SPICEBREAD
+            EdiblesManager.FoodInfo info = new EdiblesManager.FoodInfo(ID, 4000000f, 4, 255.15f, 277.15f, 4800f, true, DlcManager.EXPANSION1); // see TUNING.FOOD.FOOD_TYPES.SPICEBREAD
             GameObject looseEntity = EntityTemplates.CreateLooseEntity(ID, STRINGS.FOOD.DUSKBUN.NAME, STRINGS.FOOD.DUSKBUN.DESC, 1f, true, Assets.GetAnim("food_duskbun_kanim"), "object", Grid.SceneLayer.Front, EntityTemplates.CollisionShape.RECTANGLE, 0.8f, 0.4f, true);
             return EntityTemplates.ExtendEntityToFood(looseEntity, info);
         }

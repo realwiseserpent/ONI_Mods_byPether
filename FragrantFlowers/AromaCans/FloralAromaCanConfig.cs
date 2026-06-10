@@ -22,7 +22,6 @@ namespace FragrantFlowers
 
         public GameObject CreatePrefab()
         {
-
             ComplexRecipe.RecipeElement[] ingredients = new ComplexRecipe.RecipeElement[2]
             {
                 new ComplexRecipe.RecipeElement(AromaticsFabricator.BasicCanIngridientTag, AromaticsFabricator.BasicCanIngridientMass),
@@ -34,7 +33,7 @@ namespace FragrantFlowers
             };
             recipe = new ComplexRecipe(ComplexRecipeManager.MakeRecipeID(CraftingTableConfig.ID, (IList<ComplexRecipe.RecipeElement>)ingredients, (IList<ComplexRecipe.RecipeElement>)results), ingredients, results)
             {
-                time = 100f,
+                time = 60f,
                 description = STRINGS.AROMACANS.FLORAL.DESC,
                 nameDisplay = ComplexRecipe.RecipeNameDisplay.Result,
                 fabricators = new List<Tag>() { (Tag)CraftingTableConfig.ID },

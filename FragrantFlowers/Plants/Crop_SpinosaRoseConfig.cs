@@ -18,7 +18,7 @@ namespace FragrantFlowers
         public const string ID = "SpinosaRose";
         public const string SPICE_ID = "SpinosaRoseSpice";
         public const string SPICE_SPRITE = "roseSpice_125";
-        public const float GROW_TIME = 4500f;
+        public const float GROW_TIME = Crop_SpinosaHipsConfig.GROW_TIME / 2;
         public static readonly Tag TAG = TagManager.Create(ID);
 
         public GameObject CreatePrefab()
@@ -51,7 +51,8 @@ namespace FragrantFlowers
             def.spoilTime = 4800f;
             def.staleTime = def.spoilTime / 2;
 
-            DefineRecipe();
+
+            //DefineRecipe();
 
             return go;
         }

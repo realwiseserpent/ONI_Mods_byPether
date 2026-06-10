@@ -39,7 +39,7 @@ namespace FragrantFlowers
         public const float TemperatureWarningHigh = 273.15f;   //   0°C: Plant will stop growing (Highest Temp)
         public const float TemperatureLethalHigh = 283.15f;    //  10°C: Plant will die (Highest Temp)
 
-        public const float Fertilization = 0.0016666667f;         // Ice Fertilization Needed
+        public const float Fertilization = 5 / 600f;         // Ice Fertilization Needed
 
         public ComplexRecipe Recipe;
 
@@ -134,8 +134,8 @@ namespace FragrantFlowers
 			DiseaseDropper.Def def = gameObject.AddOrGetDef<DiseaseDropper.Def>();
 			def.diseaseIdx = Db.Get().Diseases.GetIndex(MallowScent.ID);
 			def.emitFrequency = 10f;
-			def.averageEmitPerSecond = 1000;
-			def.singleEmitQuantity = 100000;
+            //def.averageEmitPerSecond = 1000;
+            def.singleEmitQuantity = 1000000;
 			gameObject.AddOrGet<DiseaseSourceVisualizer>().alwaysShowDisease = MallowScent.ID;
 
 			return gameObject;

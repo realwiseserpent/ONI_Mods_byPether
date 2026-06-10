@@ -40,7 +40,7 @@ namespace FragrantFlowers
         public const float TemperatureLethalHigh = 398.15f;    // 125°C: Plant will die (Highest Temp)
 
         public const float Irrigation = 0.03f;             // Water Irrigation Needed
-        public const float Fertilization = 0.012f;         // Dirty Fertilization Needed
+        public const float Fertilization = 12 / 600f;         // Dirty Fertilization Needed
 
         public ComplexRecipe Recipe;
 
@@ -145,20 +145,21 @@ namespace FragrantFlowers
             {
             new PlantElementAbsorber.ConsumeInfo
             {
-                tag = SimHashes.Dirt.CreateTag(),
+                    tag = SimHashes.Phosphorite.CreateTag(),
                 massConsumptionRate = Fertilization
             }
             });
 
             //===> LIQUID IRRIGATION THIS CROP REQUIRES <===========================================================================
-            EntityTemplates.ExtendPlantToIrrigated(gameObject, new PlantElementAbsorber.ConsumeInfo[]
-            {
-            new PlantElementAbsorber.ConsumeInfo
-            {
-                tag = SimHashes.Water.CreateTag(),
-                massConsumptionRate = Irrigation
-            }
-            });
+            //EntityTemplates.ExtendPlantToIrrigated(gameObject, new PlantElementAbsorber.ConsumeInfo[]
+            //{
+            //new PlantElementAbsorber.ConsumeInfo
+            //{
+            //    tag = SimHashes.Water.CreateTag(),
+            //    massConsumptionRate = Irrigation
+            //}
+            //});
+
             gameObject.AddOrGet<StandardCropPlant>();
             gameObject.AddOrGet<LoopingSounds>();
 
@@ -166,8 +167,8 @@ namespace FragrantFlowers
             DiseaseDropper.Def def = gameObject.AddOrGetDef<DiseaseDropper.Def>();
             def.diseaseIdx = Db.Get().Diseases.GetIndex(RoseScent.ID);
             def.emitFrequency = 10f;
-            def.averageEmitPerSecond = 1000;
-            def.singleEmitQuantity = 100000;
+            //def.averageEmitPerSecond = 1000;
+            def.singleEmitQuantity = 1000000;
             gameObject.AddOrGet<DiseaseSourceVisualizer>().alwaysShowDisease = RoseScent.ID;
 
             //===> LIGHT REQUIREMENT <=============================================================================================

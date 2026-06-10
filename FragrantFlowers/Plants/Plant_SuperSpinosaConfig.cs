@@ -30,14 +30,14 @@ namespace FragrantFlowers
         };
 
         //===> TEMPERATURE SETTINGS <=====================================
-        public const float DefaultTemperature = 290.15f;       //  17°C: Normal Temperature
-        public const float TemperatureLethalLow = 218.15f;     // -55ºC: Plant will die (Lowest Temp)
-        public const float TemperatureWarningLow = 278.15f;    //   5°C: Plant will stop growing (Lowest Temp)
-        public const float TemperatureWarningHigh = 303.15f;   //  30°C: Plant will stop growing (Highest Temp)
-        public const float TemperatureLethalHigh = 398.15f;    // 125°C: Plant will die (Highest Temp)
+        public const float DefaultTemperature = Plant_SpinosaConfig.DefaultTemperature;       //  17°C: Normal Temperature
+        public const float TemperatureLethalLow = Plant_SpinosaConfig.TemperatureLethalLow;    // -55ºC: Plant will die (Lowest Temp)
+        public const float TemperatureWarningLow = Plant_SpinosaConfig.TemperatureWarningLow;    //   5°C: Plant will stop growing (Lowest Temp)
+        public const float TemperatureWarningHigh = Plant_SpinosaConfig.TemperatureWarningHigh;    //  30°C: Plant will stop growing (Highest Temp)
+        public const float TemperatureLethalHigh = Plant_SpinosaConfig.TemperatureLethalHigh;     // 125°C: Plant will die (Highest Temp)
 
-        public const float Irrigation = 0.03f;             // Water Irrigation Needed
-        public const float Fertilization = 0.012f;         // Dirty Fertilization Needed
+        public const float Irrigation = Plant_SpinosaConfig.Irrigation;             // Irrigation Needed
+        public const float Fertilization = Plant_SpinosaConfig.Fertilization;        // Fertilization Needed
 
         public ComplexRecipe Recipe;
 
@@ -116,22 +116,24 @@ namespace FragrantFlowers
             {
             new PlantElementAbsorber.ConsumeInfo
             {
-                tag = SimHashes.Dirt.CreateTag(),
+                    tag = SimHashes.Phosphorite.CreateTag(),
                 massConsumptionRate = Fertilization
             }
             });
 
             //===> LIQUID IRRIGATION THIS CROP REQUIRES <===========================================================================
-            EntityTemplates.ExtendPlantToIrrigated(gameObject, new PlantElementAbsorber.ConsumeInfo[]
-            {
-            new PlantElementAbsorber.ConsumeInfo
-            {
-                tag = SimHashes.Water.CreateTag(),
-                massConsumptionRate = Irrigation
-            }
-            });
+            //EntityTemplates.ExtendPlantToIrrigated(gameObject, new PlantElementAbsorber.ConsumeInfo[]
+            //{
+            //new PlantElementAbsorber.ConsumeInfo
+            //{
+            //    tag = SimHashes.Water.CreateTag(),
+            //    massConsumptionRate = Irrigation
+            //}
+            //});
+
             gameObject.AddOrGet<StandardCropPlant>();
             gameObject.AddOrGet<LoopingSounds>();
+            gameObject.AddOrGet<BlightVulnerable>();
 
             //===> LIGHT REQUIREMENT <=============================================================================================
             Modifiers component = gameObject.GetComponent<Modifiers>();

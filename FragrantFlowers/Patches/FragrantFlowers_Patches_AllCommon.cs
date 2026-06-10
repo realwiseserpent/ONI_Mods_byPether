@@ -6,6 +6,7 @@ using Klei.AI;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Linq;
 
 namespace FragrantFlowers
 {
@@ -41,7 +42,7 @@ namespace FragrantFlowers
                 RegisterStrings.MakeGermStrings(RoseScent.ID, STRINGS.GERMS.ROSESCENT.NAME, STRINGS.GERMS.ROSESCENT.LEGEND_HOVERTEXT, STRINGS.GERMS.ROSESCENT.DESCRIPTION);
                 RegisterStrings.MakeGermStrings(MallowScent.ID, STRINGS.GERMS.MALLOWSCENT.NAME, STRINGS.GERMS.MALLOWSCENT.LEGEND_HOVERTEXT, STRINGS.GERMS.MALLOWSCENT.DESCRIPTION);
                 RegisterStrings.MakeGermStrings(LavenderScent.ID, STRINGS.GERMS.LAVENDERSCENT.NAME, STRINGS.GERMS.LAVENDERSCENT.LEGEND_HOVERTEXT, STRINGS.GERMS.LAVENDERSCENT.DESCRIPTION);
-                
+
                 ExpandExposureTable();
             }
 
@@ -50,7 +51,7 @@ namespace FragrantFlowers
                 Db.Get().effects.Add(RoseScent.GetSmellEffect());
                 Db.Get().effects.Add(MallowScent.GetSmellEffect());
                 Db.Get().effects.Add(LavenderScent.GetSmellEffect());
-                
+
                 Spices spices = Db.Get().Spices;
                 Crop_DuskbloomConfig.CreateSpice(spices);
                 Crop_CottonBollConfig.CreateSpice(spices);
@@ -139,6 +140,75 @@ namespace FragrantFlowers
                 Sprite sprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f));
                 HashedString key = new HashedString(spriteName);
                 Assets.Sprites.Add(key, sprite);
+            }
+        }
+
+        [HarmonyPatch(typeof(MicrobeMusherConfig), "ConfigureBuildingTemplate")]
+        public class MicrobeMusherConfig_ConfigureBuildingTemplate_Patch
+        {
+            public static void Postfix(GameObject go, Tag prefab_tag)
+            {
+                foreach (var c in FruitCakeConfig.recipe.ingredients)
+                {
+                    if (c.possibleMaterials.Contains((Tag)PrickleFruitConfig.ID))
+                    {
+                        c.possibleMaterials = new List<Tag>(c.possibleMaterials) { Crop_DuskberryConfig.ID, Crop_SpinosaHipsConfig.ID }.ToArray();
+                        c.possibleMaterialAmounts = new List<float>(c.possibleMaterialAmounts) { 1.6f, 1.6f }.ToArray(); ;
+                    }
+                }
+            }
+        }
+
+        [HarmonyPatch(typeof(GourmetCookingStationConfig), "ConfigureBuildingTemplate")]
+        public class GourmetCookingStationConfig_ConfigureBuildingTemplate_Patch
+        {
+            public static void Postfix(GameObject go, Tag prefab_tag)
+            {
+                if (!DlcManager.IsContentSubscribed(DlcManager.EXPANSION1_ID))
+                    return;
+
+                foreach (var c in BerryPieConfig.recipe.ingredients)
+                {
+                    if (c.possibleMaterials.Contains((Tag)GrilledPrickleFruitConfig.ID))
+                    {
+                        c.possibleMaterials = new List<Tag>(c.possibleMaterials) { Crop_DuskberryConfig.ID, Crop_SpinosaHipsConfig.ID }.ToArray();
+                        c.possibleMaterialAmounts = new List<float>(c.possibleMaterialAmounts) { 2f, 2f }.ToArray(); ;
+                    }
+                }
+            }
+        }
+
+        [HarmonyPatch(typeof(IntermediateCureConfig), "CreatePrefab")]
+        public static class IntermediateCureConfig_CreatePrefab_Patch
+        {
+            public static void Postfix()
+            {
+                var ing = IntermediateCureConfig.recipe.ingredients[0];
+
+                if (ing.possibleMaterialAmounts != null)
+                    ing.possibleMaterialAmounts = new List<float>(ing.possibleMaterialAmounts) { 1f }.ToArray();
+
+                if (ing.material != null)
+                {
+                    ing.possibleMaterials = new Tag[] { ing.material, Crop_SpinosaRoseConfig.ID };
+                    ing.material = null;
+                }
+                else
+                {
+                    ing.possibleMaterials = new List<Tag>(ing.possibleMaterials) { Crop_SpinosaRoseConfig.ID }.ToArray();
+                }
+            }
+        }
+
+        [HarmonyPatch(typeof(AntihistamineConfig), "CreatePrefab")]
+        public static class AntihistamineConfig_CreatePrefab_Patch
+        {
+            public static void Postfix()
+            {
+                AntihistamineConfig.recipes[0].ingredients[0].possibleMaterials = new List<Tag>(AntihistamineConfig.recipes[0].ingredients[0].possibleMaterials) { Crop_DuskbloomConfig.ID }.ToArray();
+
+                if (AntihistamineConfig.recipes[0].ingredients[0].possibleMaterialAmounts != null)
+                    AntihistamineConfig.recipes[0].ingredients[0].possibleMaterialAmounts = new List<float>(AntihistamineConfig.recipes[0].ingredients[0].possibleMaterialAmounts) { 1f }.ToArray();
             }
         }
     }

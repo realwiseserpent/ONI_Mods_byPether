@@ -145,35 +145,35 @@ namespace FragrantFlowers
             public class SPINOSA
             {
                 public static LocString NAME = UI.FormatAsLink("Blooming Spinosa", Plant_SpinosaConfig.ID);
-                public static LocString DESC = $"A rather thorny sten plant that blooms with a beautiful {UI.FormatAsLink("Spinosa Rose", Crop_SpinosaRoseConfig.ID)}.";
-                public static LocString DOMESTICATED_DESC = $"In domesticated environment this crop requires copious amounts of {UI.FormatAsLink("Water", "WATER")}, and {UI.FormatAsLink("Dirt", "DIRT")} as fertilizer. Also requires direct exposure to sunlight.";
+                public static LocString DESC = $"A rather thorny stem plant that blooms with a beautiful {UI.FormatAsLink("Spinosa Rose", Crop_SpinosaRoseConfig.ID)}.";
+                public static LocString DOMESTICATED_DESC = $"This plant produces {UI.FormatAsLink("Spinosa Rose", Crop_SpinosaRoseConfig.ID)}.";
             }
 
             public class SUPERSPINOSA
             {
                 public static LocString NAME = UI.FormatAsLink("Fruiting Spinosa", Plant_SuperSpinosaConfig.ID);
-                public static LocString DESC = $"A rather thorny sten plant that produces an edible {UI.FormatAsLink("Spinosa Hips", Crop_SpinosaHipsConfig.ID)}.";
-                public static LocString DOMESTICATED_DESC = $"In domesticated environment this crop requires copious amounts of {UI.FormatAsLink("Water", "WATER")}, and {UI.FormatAsLink("Dirt", "DIRT")} as fertilizer. Also requires direct exposure to sunlight.";
+                public static LocString DESC = $"A rather thorny stem plant that produces an edible {UI.FormatAsLink("Spinosa Hips", Crop_SpinosaHipsConfig.ID)}.";
+                public static LocString DOMESTICATED_DESC = $"This plant produces edible {UI.FormatAsLink("Spinosa Hips", Crop_SpinosaHipsConfig.ID)}.";
             }
 
             public class DUSKLAVENDER
             {
                 public static LocString NAME = UI.FormatAsLink("Duskbloom Lavender", Plant_DuskLavenderConfig.ID);
                 public static LocString DESC = $"A shrub-like plant blooms with a beautiful {UI.FormatAsLink("Duskbloom", Crop_DuskbloomConfig.ID)}.";
-                public static LocString DOMESTICATED_DESC = $"In domesticated environment this crop requires the use of {UI.FormatAsLink("Phosphorite", "PHOSPHORITE")} as fertilization.";
+                public static LocString DOMESTICATED_DESC = $"This plant produces {UI.FormatAsLink("Duskbloom Rose", Crop_DuskbloomConfig.ID)}.";
             }
 
             public class SUPERDUSKLAVENDER
             {
                 public static LocString NAME = UI.FormatAsLink("Duskberry Lavender", Plant_SuperDuskLavenderConfig.ID);
                 public static LocString DESC = $"A shrub-like plant sprouts with an edible {UI.FormatAsLink("Duskberry", Crop_DuskberryConfig.ID)}.";
-                public static LocString DOMESTICATED_DESC = $"In domesticated environment this crop requires the use of {UI.FormatAsLink("Phosphorite", "PHOSPHORITE")} as fertilization.";
+                public static LocString DOMESTICATED_DESC = $"This plant produces edible {UI.FormatAsLink("Duskberry", Crop_DuskberryConfig.ID)}.";
             }
             public class RIMEDMALLOW
             {
                 public static LocString NAME = UI.FormatAsLink("Rimed Mallow", Plant_RimedMallowConfig.ID);
                 public static LocString DESC = $"An evergreen plant well adapt to thrive in very cold environments. Produces a fluffy {UI.FormatAsLink("Rimed Cotton Boll", Crop_CottonBollConfig.ID)}.";
-                public static LocString DOMESTICATED_DESC = $"In domesticated environment this crop requires the use of pure water in form of {UI.FormatAsLink("Ice", "ICE")} as fertilization.";
+                public static LocString DOMESTICATED_DESC = $"This plant produces {UI.FormatAsLink("Rimed Cotton Boll", Crop_CottonBollConfig.ID)}.";
             }
         }
 

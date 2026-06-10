@@ -18,7 +18,7 @@ namespace FragrantFlowers
         public const string ID = "Duskbloom";
         public const string SPICE_ID = "DuskbloomSpice";
         public const string SPICE_SPRITE = "lavenderSpice_125";
-        public const float GROW_TIME = 4500f;
+        public const float GROW_TIME = Crop_DuskberryConfig.GROW_TIME / 2;
         public static readonly Tag TAG = TagManager.Create(ID);
 
         public GameObject CreatePrefab()
@@ -50,8 +50,11 @@ namespace FragrantFlowers
             def.rotTemperature = 277.15f;
             def.spoilTime = 4800f;
             def.staleTime = def.spoilTime / 2;
+            EntityTemplates.CreateAndRegisterCompostableFromPrefab(go);
 
             DefineRecipe();
+
+            //DefineRecipe();
 
             return go;
         }

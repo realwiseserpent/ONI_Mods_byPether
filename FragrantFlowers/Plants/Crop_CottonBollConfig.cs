@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using TUNING;
 using UnityEngine;
 using Database;
+using BUILDINGS = STRINGS.BUILDINGS;
+using ITEMS = STRINGS.ITEMS;
 
 
 namespace FragrantFlowers
@@ -19,7 +21,7 @@ namespace FragrantFlowers
         public const string ID = "RimedCotton";
         public const string SPICE_ID = "CottonBollSpice";
         public const string SPICE_SPRITE = "mallowSpice_125";
-        public const float GROW_TIME = 4500f;
+        public const float GROW_TIME = 9 * 600f;
         public static readonly Tag TAG = TagManager.Create(ID);
 
         public static ComplexRecipe recipe;
@@ -30,20 +32,20 @@ namespace FragrantFlowers
                 ID,
                 STRINGS.CROPS.COTTONBOLL.NAME,
                 STRINGS.CROPS.COTTONBOLL.DESC,
-                1f, 
-                false, 
-                Assets.GetAnim("item_cottonboll_kanim"), 
-                "object", 
-                Grid.SceneLayer.Front, 
-                EntityTemplates.CollisionShape.CIRCLE, 
-                0.35f, 
-                0.35f, 
-                true, 
-                0, 
-                SimHashes.Creature, 
+                1f,
+                false,
+                Assets.GetAnim("item_cottonboll_kanim"),
+                "object",
+                Grid.SceneLayer.Front,
+                EntityTemplates.CollisionShape.CIRCLE,
+                0.35f,
+                0.35f,
+                true,
+                0,
+                SimHashes.Creature,
                 new List<Tag>
                 {
-                    GameTags.CookingIngredient, 
+                    GameTags.CookingIngredient,
                     GameTags.IndustrialIngredient,
                     GameTags.BuildingFiber
                 });
@@ -51,10 +53,11 @@ namespace FragrantFlowers
             go.AddOrGet<SimpleMassStatusItem>();
 
             Rottable.Def def = go.AddOrGetDef<Rottable.Def>();
-            def.preserveTemperature = 255.15f;
-            def.rotTemperature = 277.15f;
+            def.preserveTemperature = 283.15f;
+            def.rotTemperature = 308.15f;
             def.spoilTime = 4800f;
             def.staleTime = def.spoilTime / 2;
+            EntityTemplates.CreateAndRegisterCompostableFromPrefab(go);
 
             RegisterRecipe();
 
@@ -74,19 +77,21 @@ namespace FragrantFlowers
 
             ComplexRecipe.RecipeElement[] ingredients = new ComplexRecipe.RecipeElement[1]
             {
-                new ComplexRecipe.RecipeElement(ID, 2f)
+                new ComplexRecipe.RecipeElement(ID, 6f)
             };
             ComplexRecipe.RecipeElement[] results = new ComplexRecipe.RecipeElement[1]
             {
-                new ComplexRecipe.RecipeElement(BasicFabricConfig.ID, 1f, ComplexRecipe.RecipeElement.TemperatureOperation.AverageTemperature)
+                new ComplexRecipe.RecipeElement(BasicFabricConfig.ID, 3f, ComplexRecipe.RecipeElement.TemperatureOperation.AverageTemperature)
             };
             recipe = new ComplexRecipe(ComplexRecipeManager.MakeRecipeID(RockCrusherConfig.ID, (IList<ComplexRecipe.RecipeElement>)ingredients, (IList<ComplexRecipe.RecipeElement>)results), ingredients, results)
             {
-                time = 100f,
-                description = STR.ITEMS.INDUSTRIAL_PRODUCTS.BASIC_FABRIC.DESC,
-                nameDisplay = ComplexRecipe.RecipeNameDisplay.Result,
+                time = 40f,
+                description = string.Format(BUILDINGS.PREFABS.ROCKCRUSHER.RECIPE_DESCRIPTION,
+                STRINGS.CROPS.COTTONBOLL.NAME,
+                ITEMS.INDUSTRIAL_PRODUCTS.BASIC_FABRIC.NAME),
+                nameDisplay = ComplexRecipe.RecipeNameDisplay.IngredientToResult,
                 fabricators = new List<Tag>() { RockCrusherConfig.ID },
-                sortOrder = 11
+                sortOrder = 999
             };
         }
 

@@ -35,11 +35,17 @@ namespace FragrantFlowers
         {
             public static void Postfix(ref Immigration __instance)
             {
+                var sucrose = ElementLoader.FindElementByHash(SimHashes.Sucrose).tag.ToString();
+
                 Traverse traverse = Traverse.Create(__instance).Field("carePackages");
                 List<CarePackageInfo> list = traverse.GetValue<List<CarePackageInfo>>();
                 list.Add(new CarePackageInfo(Plant_SpinosaConfig.SEED_ID , Settings.Instance.Rose.SeedsInCarePackage, null));
                 list.Add(new CarePackageInfo(Plant_DuskLavenderConfig.SEED_ID, Settings.Instance.Lavender.SeedsInCarePackage, null));
                 list.Add(new CarePackageInfo(Plant_RimedMallowConfig.SEED_ID, Settings.Instance.Mallow.SeedsInCarePackage, null));
+                
+                if (list.FindIndex(x => x.id.ToUpper() == sucrose.ToUpper()) == -1)
+                    list.Add(new CarePackageInfo(sucrose, 200f, null)); // add sucrose
+
                 traverse.SetValue(list);
             }
         }

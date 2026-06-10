@@ -35,12 +35,12 @@ namespace FragrantFlowers
                 //====[ BLOOMING SPINOSA ]===============
                 RegisterStrings.MakePlantSpeciesStrings(Plant_SpinosaConfig.ID, STRINGS.PLANTS.SPINOSA.NAME, STRINGS.PLANTS.SPINOSA.DESC);
                 RegisterStrings.MakeCodexStrings(Plant_SpinosaConfig.ID, STRINGS.PLANTS.SPINOSA.NAME, STRINGS.CODEX.AROMATICPLANTSUBTITLE);
-                CROPS.CROP_TYPES.Add(new Crop.CropVal(Crop_SpinosaRoseConfig.ID, Crop_SpinosaRoseConfig.GROW_TIME, 1, true));
+                CROPS.CROP_TYPES.Add(new Crop.CropVal(Crop_SpinosaRoseConfig.ID, Crop_SpinosaRoseConfig.GROW_TIME, 3, true));
 
                 //====[ FRUITING SPINOSA ]===============
                 RegisterStrings.MakePlantSpeciesStrings(Plant_SuperSpinosaConfig.ID, STRINGS.PLANTS.SUPERSPINOSA.NAME, STRINGS.PLANTS.SUPERSPINOSA.DESC);
                 RegisterStrings.MakeCodexStrings(Plant_SuperSpinosaConfig.ID, STRINGS.PLANTS.SUPERSPINOSA.NAME, STRINGS.CODEX.FOODPLANTSUBTITLE);
-                CROPS.CROP_TYPES.Add(new Crop.CropVal(Crop_SpinosaHipsConfig.ID, Crop_SpinosaHipsConfig.GROW_TIME, 1, true));
+                CROPS.CROP_TYPES.Add(new Crop.CropVal(Crop_SpinosaHipsConfig.ID, Crop_SpinosaHipsConfig.GROW_TIME, 3, true));
 
                 //=========================================================================> DUSK LAVENDER <========================
                 //====[ DUSKBLOOM ]===================
@@ -56,12 +56,12 @@ namespace FragrantFlowers
                 //====[ DUSKBLOOM LAVENDER ]==========
                 RegisterStrings.MakePlantSpeciesStrings(Plant_DuskLavenderConfig.ID, STRINGS.PLANTS.DUSKLAVENDER.NAME, STRINGS.PLANTS.DUSKLAVENDER.DESC);
                 RegisterStrings.MakeCodexStrings(Plant_DuskLavenderConfig.ID, STRINGS.PLANTS.DUSKLAVENDER.NAME, STRINGS.CODEX.AROMATICPLANTSUBTITLE);
-                CROPS.CROP_TYPES.Add(new Crop.CropVal(Crop_DuskbloomConfig.ID, Crop_DuskbloomConfig.GROW_TIME, 1, true));
+                CROPS.CROP_TYPES.Add(new Crop.CropVal(Crop_DuskbloomConfig.ID, Crop_DuskbloomConfig.GROW_TIME, 4, true));
 
                 //====[ DUSKBERRY LAVENDER ]==========
                 RegisterStrings.MakePlantSpeciesStrings(Plant_SuperDuskLavenderConfig.ID, STRINGS.PLANTS.SUPERDUSKLAVENDER.NAME, STRINGS.PLANTS.SUPERDUSKLAVENDER.DESC);
                 RegisterStrings.MakeCodexStrings(Plant_SuperDuskLavenderConfig.ID, STRINGS.PLANTS.SUPERDUSKLAVENDER.NAME, STRINGS.CODEX.FOODPLANTSUBTITLE);
-                CROPS.CROP_TYPES.Add(new Crop.CropVal(Crop_DuskberryConfig.ID, Crop_DuskberryConfig.GROW_TIME, 1, true));
+                CROPS.CROP_TYPES.Add(new Crop.CropVal(Crop_DuskberryConfig.ID, Crop_DuskberryConfig.GROW_TIME, 4, true));
 
                 //=========================================================================> RIMED MALLOW <========================
                 //====[ RIMED COTTON BOLL ]===========
@@ -74,7 +74,7 @@ namespace FragrantFlowers
                 //====[ RIMED MALLOW ]================
                 RegisterStrings.MakePlantSpeciesStrings(Plant_RimedMallowConfig.ID, STRINGS.PLANTS.RIMEDMALLOW.NAME, STRINGS.PLANTS.RIMEDMALLOW.DESC);
                 RegisterStrings.MakeCodexStrings(Plant_RimedMallowConfig.ID, STRINGS.PLANTS.RIMEDMALLOW.NAME, STRINGS.CODEX.AROMATICPLANTSUBTITLE);
-                CROPS.CROP_TYPES.Add(new Crop.CropVal(Crop_CottonBollConfig.ID, Crop_CottonBollConfig.GROW_TIME, 1, true));
+                CROPS.CROP_TYPES.Add(new Crop.CropVal(Crop_CottonBollConfig.ID, Crop_CottonBollConfig.GROW_TIME, 6, true));
 
 
                 RegisterStrings.MakeFoodStrings(DuskbunConfig.ID, STRINGS.FOOD.DUSKBUN.NAME, STRINGS.FOOD.DUSKBUN.DESC);

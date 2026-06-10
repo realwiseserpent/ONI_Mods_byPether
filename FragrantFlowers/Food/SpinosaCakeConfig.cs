@@ -8,7 +8,7 @@ namespace FragrantFlowers
         public const string ID = "SpinosaCake";
         public static ComplexRecipe recipe;
 
-        public string[] GetDlcIds() => DlcManager.AVAILABLE_EXPANSION1_ONLY;
+        public string[] GetDlcIds() => DlcManager.EXPANSION1;
 
         public void OnPrefabInit(GameObject inst)
         {
@@ -21,11 +21,12 @@ namespace FragrantFlowers
         public GameObject CreatePrefab()
         {
 
-            ComplexRecipe.RecipeElement[] ingredients = new ComplexRecipe.RecipeElement[3]
+            ComplexRecipe.RecipeElement[] ingredients = new ComplexRecipe.RecipeElement[]
             {
-              new ComplexRecipe.RecipeElement(SpinosaSyrupConfig.ID, 1f),
-              new ComplexRecipe.RecipeElement(ColdWheatConfig.SEED_ID, 3f),
-              new ComplexRecipe.RecipeElement(RawEggConfig.ID, 1f)
+                new ComplexRecipe.RecipeElement(SpinosaSyrupConfig.ID, 1f),
+                //new ComplexRecipe.RecipeElement(ColdWheatConfig.SEED_ID, 2f),
+                //new ComplexRecipe.RecipeElement(RawEggConfig.ID, 1f),
+                new ComplexRecipe.RecipeElement(PancakesConfig.ID, 1f),
             };
             ComplexRecipe.RecipeElement[] results = new ComplexRecipe.RecipeElement[1]
             {
@@ -40,7 +41,11 @@ namespace FragrantFlowers
                 sortOrder = 1
             };
 
-            EdiblesManager.FoodInfo info = new EdiblesManager.FoodInfo(ID, "EXPANSION1_ID", 4200000f, 5, 255.15f, 277.15f, 2400f, true); // see TUNING.FOOD.FOOD_TYPES.BERRY_PIE
+            EdiblesManager.FoodInfo info = new EdiblesManager.FoodInfo(ID, 6000000f, 5, 255.15f, 277.15f, 2400f, true, DlcManager.EXPANSION1); 
+            //info.AddEffects(new List<string>
+            //{
+            //    "GoodEats",
+            //});
             GameObject looseEntity = EntityTemplates.CreateLooseEntity(ID, STRINGS.FOOD.SPINOSACAKE.NAME, STRINGS.FOOD.SPINOSACAKE.DESC, 1f, true, Assets.GetAnim("food_rosecake_kanim"), "object", Grid.SceneLayer.Front, EntityTemplates.CollisionShape.RECTANGLE, 0.8f, 0.4f, true);
             return EntityTemplates.ExtendEntityToFood(looseEntity, info);
         }

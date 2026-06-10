@@ -8,7 +8,7 @@ namespace FragrantFlowers
         public const string ID = "SpinosaSyrup";
         public static ComplexRecipe recipe;
 
-        public string[] GetDlcIds() => DlcManager.AVAILABLE_EXPANSION1_ONLY;
+        public string[] GetDlcIds() => DlcManager.EXPANSION1;
 
         public void OnPrefabInit(GameObject inst)
         {
@@ -20,12 +20,11 @@ namespace FragrantFlowers
 
         public GameObject CreatePrefab()
         {
-
             ComplexRecipe.RecipeElement[] ingredients = new ComplexRecipe.RecipeElement[3]
             {
-                new ComplexRecipe.RecipeElement(Crop_SpinosaHipsConfig.ID, 2f),
-                new ComplexRecipe.RecipeElement(SimHashes.Water.CreateTag(), 100f),
-                new ComplexRecipe.RecipeElement(SimHashes.Sucrose.CreateTag(), 2f)
+                new ComplexRecipe.RecipeElement(Crop_SpinosaHipsConfig.ID, 1f),
+                new ComplexRecipe.RecipeElement(SimHashes.Water.CreateTag(), 50f),
+                new ComplexRecipe.RecipeElement(SimHashes.Sucrose.CreateTag(), 4f)
             };
             ComplexRecipe.RecipeElement[] results = new ComplexRecipe.RecipeElement[1]
             {
@@ -40,7 +39,7 @@ namespace FragrantFlowers
                 sortOrder = 1
             };
 
-            EdiblesManager.FoodInfo info = new EdiblesManager.FoodInfo(ID, "EXPANSION1_ID", 2400000f, 3, 255.15f, 277.15f, 19200f, true); // see TUNING.FOOD.FOOD_TYPES.WORMSUPERFOOD
+            EdiblesManager.FoodInfo info = new EdiblesManager.FoodInfo(ID, 2000000f, 3, 255.15f, 277.15f, 19200f, true, DlcManager.EXPANSION1); // see TUNING.FOOD.FOOD_TYPES.WORMSUPERFOOD
             GameObject looseEntity = EntityTemplates.CreateLooseEntity(ID, STRINGS.FOOD.SPINOSASYRUP.NAME, STRINGS.FOOD.SPINOSASYRUP.DESC, 1f, true, Assets.GetAnim("food_spinoza_syrup_kanim"), "object", Grid.SceneLayer.Front, EntityTemplates.CollisionShape.RECTANGLE, 0.8f, 0.4f, true);
             return EntityTemplates.ExtendEntityToFood(looseEntity, info);
         }
